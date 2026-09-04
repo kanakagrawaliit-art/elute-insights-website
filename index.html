@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elute Insights — Data Analytics, ML &amp; AI Consulting</title>
+<meta name="description" content="Elute Insights: data analytics, machine learning, and AI consulting for teams that need forecasts and models they can actually act on.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-primary:#0B2545;
+    --color-primary-deep:#071930;
+    --color-secondary:#00A8A8;
+    --color-secondary-soft:#CFEFEF;
+    --color-accent:#F2994A;
+    --color-accent-deep:#D97D2E;
+    --color-text:#1B1F23;
+    --color-text-muted:#5B6672;
+    --color-border:#DCE3EA;
+    --color-bg:#F7F9FB;
+    --color-bg-white:#FFFFFF;
+    --color-dark-body:#B9C6D6;
+    --color-dark-numeral:#CFEFEF;
+    --font-heading:'IBM Plex Sans', Inter, -apple-system, sans-serif;
+    --font-body:'Inter', -apple-system, sans-serif;
+    --font-mono:'IBM Plex Mono', Menlo, monospace;
+    --radius-sm:3px;
+    --max-width:1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    color:var(--color-text);
+    background:var(--color-bg);
+  }
+
+  h1,h2,h3{
+    font-family:var(--font-heading);
+    color:var(--color-primary);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  .wrap{
+    max-width:var(--max-width);
+    margin:0 auto;
+    padding:0 40px;
+  }
+  @media (max-width:900px){
+    .wrap{padding:0 24px;}
+  }
+
+  :focus-visible{
+    outline:2px solid var(--color-secondary);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    height:76px;
+    display:flex;
+    align-items:center;
+    background:rgba(247,249,251,0.82);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  header.scrolled{
+    border-bottom-color:var(--color-border);
+    box-shadow:0 2px 14px rgba(11,37,69,0.06);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    width:100%;
+    gap:32px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    flex-shrink:0;
+  }
+  .brand img{
+    height:32px;
+    width:auto;
+    display:block;
+  }
+  .brand svg{flex-shrink:0;}
+  nav.primary-nav{
+    display:flex;
+    gap:26px;
+    flex:1;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  nav.primary-nav::-webkit-scrollbar{display:none;}
+  nav.primary-nav a{
+    position:relative;
+    font-family:var(--font-body);
+    font-weight:500;
+    font-size:15px;
+    color:var(--color-primary);
+    text-decoration:none;
+    white-space:nowrap;
+    padding:6px 0;
+  }
+  nav.primary-nav a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    height:2px;
+    width:0%;
+    background:var(--color-secondary);
+    transition:width 0.2s ease;
+  }
+  nav.primary-nav a:hover::after,
+  nav.primary-nav a:focus-visible::after{width:100%;}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:15px 28px;
+    border-radius:var(--radius-sm);
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:15px;
+    text-decoration:none;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:background-color 0.2s ease, transform 0.18s ease, box-shadow 0.2s ease, color 0.2s ease;
+  }
+  .btn:hover{transform:translateY(-1px); box-shadow:0 6px 14px rgba(11,37,69,0.12);}
+  .btn-primary{background:var(--color-accent); color:var(--color-primary-deep);}
+  .btn-primary:hover{background:var(--color-accent-deep);}
+  .btn-dark{background:var(--color-primary); color:#fff;}
+  .btn-dark:hover{background:var(--color-primary-deep);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--color-primary);
+    border-bottom:1px solid var(--color-primary);
+    border-radius:0;
+    padding:6px 0;
+  }
+  .btn-ghost:hover{transform:none; box-shadow:none; color:var(--color-secondary); border-color:var(--color-secondary);}
+  .header-cta{flex-shrink:0;}
+
+  /* ---------- Sections generic ---------- */
+  section{
+    padding:96px 0;
+    border-bottom:1px solid var(--color-border);
+  }
+  @media (max-width:900px){
+    section{padding:64px 0;}
+  }
+  section.dark{
+    background:var(--color-primary);
+    color:var(--color-dark-body);
+    border-bottom:none;
+  }
+  section.dark h2, section.dark h3{color:#fff;}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    font-weight:500;
+    color:var(--color-secondary);
+    background:var(--color-secondary-soft);
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:3px;
+    margin-bottom:20px;
+  }
+  section.dark .eyebrow{background:rgba(207,239,239,0.12); color:var(--color-dark-numeral);}
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head h2{font-size:34px;}
+  @media (max-width:900px){.section-head h2{font-size:26px;}}
+  .section-head p{
+    font-size:17px;
+    color:var(--color-text-muted);
+    margin-top:16px;
+  }
+  section.dark .section-head p{color:var(--color-dark-body);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-top:72px;
+    padding-bottom:96px;
+    border-bottom:1px solid var(--color-border);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:64px;
+    align-items:start;
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; gap:48px;}
+    .hero-photo-col{order:-1;}
+  }
+  .hero-left{padding-top:24px;}
+  .hero-brand-name{
+    font-family:var(--font-heading);
+    font-weight:700;
+    font-size:52px;
+    line-height:1.15;
+    color:var(--color-primary);
+    letter-spacing:-0.01em;
+  }
+  @media (max-width:900px){
+    .hero-brand-name{font-size:34px;}
+  }
+  .hero-tagline{
+    font-family:var(--font-body);
+    font-weight:500;
+    font-size:19px;
+    line-height:1.5;
+    color:var(--color-text-muted);
+    margin-top:10px;
+    margin-bottom:32px;
+  }
+  @media (max-width:900px){
+    .hero-tagline{font-size:17px;}
+  }
+  .hero-left h1{
+    font-size:52px;
+    line-height:1.15;
+    max-width:15ch;
+  }
+  @media (max-width:900px){.hero-left h1{font-size:34px;}}
+  .hero-left .lead{
+    font-size:19px;
+    color:var(--color-text-muted);
+    max-width:46ch;
+    margin-top:24px;
+  }
+  .hero-photo-frame{
+    aspect-ratio:4/5;
+    width:100%;
+    max-width:340px;
+    height:auto;
+    object-fit:cover;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--color-border);
+  }
+  .hero-bio{
+    margin-top:20px;
+    font-size:16px;
+    color:var(--color-text);
+  }
+  .hero-actions{
+    margin-top:20px;
+    display:flex;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+
+  /* ---------- Services ---------- */
+  .service-row{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:32px;
+    padding:32px 0;
+    border-top:1px solid var(--color-border);
+  }
+  .service-row:last-child{border-bottom:1px solid var(--color-border);}
+  @media (max-width:700px){
+    .service-row{grid-template-columns:1fr; gap:12px;}
+  }
+  .service-row h3{font-size:22px;}
+  .service-row p{margin-top:12px; color:var(--color-text-muted); max-width:62ch;}
+  .service-tags{margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;}
+  .tag{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    font-weight:500;
+    color:var(--color-primary);
+    background:var(--color-secondary-soft);
+    padding:4px 10px;
+    border-radius:3px;
+  }
+
+  /* ---------- Demos ---------- */
+  .demo-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  @media (max-width:900px){.demo-grid{grid-template-columns:1fr;}}
+  .video-frame{
+    aspect-ratio:16/9;
+    width:100%;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--color-border);
+    background:var(--color-bg-white);
+  }
+  .demo-side h3{font-size:22px; margin-bottom:12px;}
+  .demo-side p{color:var(--color-text-muted); margin-bottom:24px;}
+
+  /* ---------- Schedule (dark) ---------- */
+  .schedule-inner{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media (max-width:900px){.schedule-inner{grid-template-columns:1fr;}}
+  .schedule-inner h2{font-size:34px; color:#fff;}
+  .schedule-inner p{color:var(--color-dark-body); margin-top:16px; font-size:17px;}
+  .schedule-panel{
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:var(--radius-sm);
+    padding:32px;
+    background:rgba(255,255,255,0.03);
+  }
+  .schedule-panel .stat{
+    font-family:var(--font-mono);
+    font-weight:600;
+    font-size:32px;
+    color:var(--color-dark-numeral);
+  }
+  .schedule-panel .stat-label{
+    font-size:14px;
+    color:var(--color-dark-body);
+    margin-top:4px;
+    margin-bottom:24px;
+  }
+
+  /* ---------- Working models ---------- */
+  .models-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--color-border);
+    border-radius:var(--radius-sm);
+    overflow:hidden;
+  }
+  @media (max-width:900px){
+    .models-grid{grid-template-columns:1fr;}
+  }
+  .model-col{
+    padding:36px 32px;
+    border-left:1px solid var(--color-border);
+    background:var(--color-bg-white);
+  }
+  .model-col:first-child{border-left:none;}
+  @media (max-width:900px){
+    .model-col{border-left:none; border-top:1px solid var(--color-border);}
+    .model-col:first-child{border-top:none;}
+  }
+  .model-col h3{font-size:20px;}
+  .model-col p{margin-top:14px; color:var(--color-text-muted); font-size:15px;}
+
+  /* ---------- Projects ---------- */
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--color-border);
+    border:1px solid var(--color-border);
+  }
+  @media (max-width:900px){.projects-grid{grid-template-columns:1fr;}}
+  .project-card{
+    background:var(--color-bg-white);
+    padding:32px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .project-field .field-label{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--color-secondary);
+    text-transform:none;
+    margin-bottom:6px;
+  }
+  .project-field p{font-size:15px; color:var(--color-text);}
+  .project-card .btn-ghost{margin-top:auto; align-self:flex-start;}
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:56px;
+  }
+  @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
+  .about-photo{
+    aspect-ratio:4/5;
+    width:100%;
+    max-width:260px;
+    height:auto;
+    object-fit:cover;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--color-border);
+  }
+  .about-block{margin-bottom:40px;}
+  .about-block:last-child{margin-bottom:0;}
+  .about-block h3{font-size:20px; margin-bottom:20px;}
+  .credential-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:16px 0;
+    border-top:1px solid var(--color-border);
+  }
+  .credential-row:last-child{border-bottom:1px solid var(--color-border);}
+  .logo-badge{
+    width:44px; height:44px;
+    flex-shrink:0;
+    border:1px solid var(--color-border);
+    border-radius:var(--radius-sm);
+    object-fit:contain;
+    padding:6px;
+    background:var(--color-bg-white);
+  }
+  .credential-text .credential-title{font-weight:600; font-size:15px; color:var(--color-text);}
+  .credential-text .credential-sub{font-size:14px; color:var(--color-text-muted); margin-top:2px;}
+
+  /* ---------- Contact ---------- */
+  .contact-inner{
+    display:flex;
+    align-items:baseline;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .contact-inner .email-link{
+    font-family:var(--font-mono);
+    font-size:22px;
+    color:var(--color-primary);
+    text-decoration:none;
+    border-bottom:1px solid var(--color-secondary);
+  }
+  .contact-inner .email-link:hover{color:var(--color-secondary);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--color-primary-deep);
+    color:var(--color-dark-body);
+    padding:48px 0;
+    font-size:14px;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .footer-brand{
+    font-family:var(--font-heading);
+    font-weight:700;
+    color:#fff;
+    font-size:16px;
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="Elute Insights, home">
+      <!-- Placeholder logo — replace src with your real brand logo -->
+      <img src="https://placehold.co/172x40/0B2545/FFFFFF?text=Elute+Insights" alt="Elute Insights logo">
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="#services">Services we offer</a>
+      <a href="#demos">Watch live demos</a>
+      <a href="#schedule">Schedule a call</a>
+      <a href="#models">Working models</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About us</a>
+      <a href="#contact">Contact us</a>
+    </nav>
+    <a class="btn btn-primary header-cta" href="#schedule">Book a consult</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" aria-label="Introduction">
+    <div class="wrap hero-grid">
+      <div class="hero-left">
+        <h1 class="hero-brand-name">Elute Insights</h1>
+        <p class="hero-tagline">Data analytics, ML &amp; AI consulting for smarter business decisions</p>
+        <p class="lead">I'm Jordan Ellis, founder of Elute Insights. I build data analytics, forecasting, and applied AI systems for operations teams — validated against holdout data, not just a slide deck.</p>
+      </div>
+      <div class="hero-photo-col">
+        <!-- Placeholder photo — replace src with your own headshot -->
+        <img class="hero-photo-frame" src="https://picsum.photos/seed/elute-hero/480/600" alt="Placeholder photo — replace with Jordan Ellis's professional headshot">
+
+        <p class="hero-bio">Eight years building forecasting and machine learning systems for retail, healthcare, and fintech operations teams. Based on rigorous statistics first, tooling second.</p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="resume.pdf" download>Download resume</a>
+          <a class="btn-ghost" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="services" aria-label="Services we offer">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Services we offer</h2>
+        <p>Three areas of work, each scoped to a measurable business outcome.</p>
+      </div>
+
+      <div class="service-row">
+        <h3>Data science</h3>
+        <div>
+          <p>I turn transactional and operational data into forecasts, segmentation, and diagnostics your team can act on — grounded in statistical foundations, not black-box guesses.</p>
+          <div class="service-tags">
+            <span class="tag">Demand forecasting</span>
+            <span class="tag">Customer segmentation</span>
+            <span class="tag">Operational diagnostics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <h3>Machine learning</h3>
+        <div>
+          <p>I design and productionize ML models — churn prediction, risk scoring, demand planning — validated against holdout sets and monitored after deployment, not just accurate in a notebook.</p>
+          <div class="service-tags">
+            <span class="tag">Model development</span>
+            <span class="tag">Validation &amp; monitoring</span>
+            <span class="tag">Deployment</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <h3>AI solutions</h3>
+        <div>
+          <p>I build applied AI tools — internal copilots, document extraction pipelines, decision-support systems — scoped to a specific workflow and a measurable result.</p>
+          <div class="service-tags">
+            <span class="tag">Internal copilots</span>
+            <span class="tag">Document extraction</span>
+            <span class="tag">Decision support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DEMOS ================= -->
+  <section id="demos" aria-label="Watch live demos">
+    <div class="wrap demo-grid">
+      <div>
+        <!-- Placeholder video — replace the src with your own intro video's embed URL -->
+        <iframe
+          class="video-frame"
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="Elute Insights introduction video (placeholder — replace with your own)"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="border:0; padding:0;">
+        </iframe>
+      </div>
+      <div class="demo-side">
+        <h3>Watch live demos</h3>
+        <p>A short walkthrough of how I approach a forecasting or ML problem end to end. For more project walkthroughs and short trainings, visit the full channel.</p>
+        <a class="btn btn-dark" href="https://www.youtube.com/@your-channel" target="_blank" rel="noopener">Visit my YouTube channel</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCHEDULE (Calendly redirect) ================= -->
+  <section id="schedule" class="dark" aria-label="Schedule a call">
+    <div class="wrap schedule-inner">
+      <div>
+        <span class="eyebrow">Schedule a call</span>
+        <h2>Talk through your data problem before committing to anything.</h2>
+        <p>A 30-minute call to understand what you're trying to solve and whether it's a good fit — no proposal pressure. Booking opens my Calendly in a new tab.</p>
+        <div style="margin-top:32px;">
+          <a class="btn btn-primary" href="https://calendly.com/your-elute-insights-link" target="_blank" rel="noopener">Book a consult</a>
+        </div>
+      </div>
+      <div class="schedule-panel">
+        <div class="stat">30 min</div>
+        <div class="stat-label">Typical intro call length</div>
+        <div class="stat">2 business days</div>
+        <div class="stat-label">Usual response time to a booking request</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WORKING MODELS ================= -->
+  <section id="models" aria-label="Working models">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Working models</h2>
+        <p>Three ways to engage, depending on scope and how long you need support.</p>
+      </div>
+      <div class="models-grid">
+        <div class="model-col">
+          <h3>Hourly</h3>
+          <p>For scoped diagnostic work, a second opinion on an existing model, or a few days of hands-on troubleshooting. Billed in quarter-hour increments, invoiced monthly.</p>
+        </div>
+        <div class="model-col">
+          <h3>Fixed project-based</h3>
+          <p>For a defined deliverable — a forecasting model, a dashboard, a proof of concept. Scoped with milestones and a fixed price agreed before work starts.</p>
+        </div>
+        <div class="model-col">
+          <h3>Monthly retainer / fractional data science leader</h3>
+          <p>For teams that need ongoing data science leadership without a full-time hire. I set the roadmap, review model performance, and mentor your analysts on a fixed monthly retainer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section id="projects" aria-label="Projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>A sample of recent work. Each entry links to a Google Drive folder with the full write-up.</p>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-field">
+            <div class="field-label">Problem</div>
+            <p>A regional retailer's demand planning ran on spreadsheets and gut feel, leading to chronic overstock in slow-moving categories.</p>
+          </div>
+          <div class="project-field">
+            <div class="field-label">Solution</div>
+            <p>Built a store-level demand forecasting model validated against 18 months of holdout data, integrated into their existing ordering workflow.</p>
+          </div>
+          <div class="project-field">
+            <div class="field-label">Outcome</div>
+            <p>Reduced overstock write-offs by 22% in the first two quarters.</p>
+          </div>
+          <a class="btn-ghost" href="https://drive.google.com/your-folder-link-1" target="_blank" rel="noopener">View full case on Drive</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-field">
+            <div class="field-label">Problem</div>
+            <p>A healthcare scheduling team spent hours each week manually triaging patient no-show risk.</p>
+          </div>
+          <div class="project-field">
+            <div class="field-label">Solution</div>
+            <p>Deployed a no-show prediction model with a simple internal dashboard, retrained monthly on new appointment data.</p>
+          </div>
+          <div class="project-field">
+            <div class="field-label">Outcome</div>
+            <p>Cut the missed-appointment rate by 15% and freed roughly six staff hours per week.</p>
+          </div>
+          <a class="btn-ghost" href="https://drive.google.com/your-folder-link-2" target="_blank" rel="noopener">View full case on Drive</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-field">
+            <div class="field-label">Problem</div>
+            <p>A B2B software company couldn't tell which support tickets needed engineering escalation before a customer churned.</p>
+          </div>
+          <div class="project-field">
+            <div class="field-label">Solution</div>
+            <p>Built a ticket-triage classifier and routing tool, trained on two years of historical tickets and outcomes.</p>
+          </div>
+          <div class="project-field">
+            <div class="field-label">Outcome</div>
+            <p>Reduced time-to-escalation from three days to same-day for high-risk tickets.</p>
+          </div>
+          <a class="btn-ghost" href="https://drive.google.com/your-folder-link-3" target="_blank" rel="noopener">View full case on Drive</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about" aria-label="About us">
+    <div class="wrap about-grid">
+      <div>
+        <!-- Placeholder photo — replace with the same headshot used in the hero -->
+        <img class="about-photo" src="https://picsum.photos/seed/elute-about/400/500" alt="Placeholder photo — replace with Jordan Ellis's professional headshot">
+      </div>
+      <div>
+        <div class="about-block">
+          <h3>Education</h3>
+          <div class="credential-row">
+            <img class="logo-badge" src="https://logo.clearbit.com/umich.edu" alt="University of Michigan logo">
+            <div class="credential-text">
+              <div class="credential-title">M.S., Applied Statistics</div>
+              <div class="credential-sub">University of Michigan</div>
+            </div>
+          </div>
+          <div class="credential-row">
+            <img class="logo-badge" src="https://logo.clearbit.com/osu.edu" alt="Ohio State University logo">
+            <div class="credential-text">
+              <div class="credential-title">B.S., Mathematics</div>
+              <div class="credential-sub">Ohio State University</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-block">
+          <h3>Experience</h3>
+          <div class="credential-row">
+            <img class="logo-badge" src="https://logo.clearbit.com/target.com" alt="Target logo">
+            <div class="credential-text">
+              <div class="credential-title">Data Science Lead, Target</div>
+              <div class="credential-sub">2019–2022</div>
+            </div>
+          </div>
+          <div class="credential-row">
+            <img class="logo-badge" src="https://logo.clearbit.com/stripe.com" alt="Stripe logo">
+            <div class="credential-text">
+              <div class="credential-title">Machine Learning Engineer, Stripe</div>
+              <div class="credential-sub">2017–2019</div>
+            </div>
+          </div>
+          <div class="credential-row">
+            <img class="logo-badge" src="https://logo.clearbit.com/kp.org" alt="Kaiser Permanente logo">
+            <div class="credential-text">
+              <div class="credential-title">Data Analyst, Kaiser Permanente</div>
+              <div class="credential-sub">2015–2017</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" aria-label="Contact us">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:32px;">
+        <h2>Contact us</h2>
+        <p>The fastest way to reach me directly.</p>
+      </div>
+      <div class="contact-inner">
+        <a class="email-link" href="mailto:hello@eluteinsights.com">hello@eluteinsights.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="footer-brand">Elute Insights</span>
+    <span>&copy; <span id="year"></span> Elute Insights. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  // Sticky header shadow on scroll
+  const header = document.getElementById('site-header');
+  const onScroll = () => {
+    if (window.scrollY > 8) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
