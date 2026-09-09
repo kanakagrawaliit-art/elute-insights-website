@@ -278,6 +278,24 @@
     gap:24px;
     flex-wrap:wrap;
   }
+  .linkedin-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.linkedin-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.linkedin-logo-link:hover .linkedin-logo {
+  opacity: 0.75;
+}
 
   /* ---------- Services ---------- */
   .service-row{
@@ -518,7 +536,19 @@
         <p class="hero-bio">8+ years of experience applying data science, machine learning, and experimentation to complex business decisions at companies including PayPal and Capital One. I combine rigorous analytics with a strong understanding of business strategy to help teams identify opportunities, reduce uncertainty, and make better decisions</p>
         <div class="hero-actions">
           <a class="btn btn-dark" href="https://raw.githubusercontent.com/kanakagrawaliit-art/elute-insights-website/main/Kanak%20Agrawal%20Resume%20-%20Data%20Scientist.pdf" download>Download resume</a>
-          <a class="btn-ghost" href="https://www.linkedin.com/in/kanak-agrawal-9884222a/" target="_blank" rel="noopener">LinkedIn</a>
+       <a class="linkedin-logo-link"
+   href="https://www.linkedin.com/in/kanak-agrawal-9884222a/"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="LinkedIn profile">
+
+  <img
+    src="https://raw.githubusercontent.com/kanakagrawaliit-art/elute-insights-website/2ef766891f99d05a9a12ffbe5035e629782f1268/linkedin-logo.png"
+    alt="LinkedIn"
+    class="linkedin-logo"
+  >
+
+</a>
         </div>
       </div>
     </div>
