@@ -507,6 +507,21 @@
     color:#fff;
     font-size:16px;
   }
+
+  .footer-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-nav a {
+  color: var(--color-dark-body);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-nav a:hover {
+  color: var(--color-secondary);
+}
 </style>
 </head>
 <body>
@@ -857,8 +872,17 @@
 
 <footer>
   <div class="wrap footer-inner">
+
     <span class="footer-brand">Elute Insights</span>
-    <span>&copy; <span id="year"></span> Elute Insights. All rights reserved.</span>
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="/blog/">Blog</a>
+    </nav>
+
+    <span>
+      &copy; <span id="year"></span> Elute Insights. All rights reserved.
+    </span>
+
   </div>
 </footer>
 
