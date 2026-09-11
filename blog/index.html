@@ -1,0 +1,142 @@
+---
+layout: null
+title: Blog
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blog | Elute Insights</title>
+
+    <meta
+        name="description"
+        content="Insights on data analytics, machine learning, AI, experimentation and business intelligence."
+    >
+
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <nav>
+
+        <a href="/">
+            Elute Insights
+        </a>
+
+        <div>
+
+            <a href="/">Home</a>
+
+            <a href="/#services">
+                Services
+            </a>
+
+            <a href="/blog/">
+                Blog
+            </a>
+
+            <a href="/#contact">
+                Contact
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<main class="blog-page">
+
+
+    <section class="blog-header">
+
+        <h1>Insights</h1>
+
+        <p>
+            Ideas and practical guides on data analytics,
+            machine learning and AI.
+        </p>
+
+    </section>
+
+
+
+    <section class="blog-list">
+
+
+        {% for post in site.posts %}
+
+        <article class="blog-card">
+
+            <p class="blog-category">
+                {{ post.category }}
+            </p>
+
+            <h2>
+
+                <a href="{{ post.url }}">
+
+                    {{ post.title }}
+
+                </a>
+
+            </h2>
+
+
+            <p>
+
+                {{ post.description }}
+
+            </p>
+
+
+            <p class="blog-date">
+
+                {{ post.date | date: "%B %d, %Y" }}
+
+            </p>
+
+
+            <a
+                class="read-more"
+                href="{{ post.url }}"
+            >
+
+                Read article →
+
+            </a>
+
+
+        </article>
+
+        {% endfor %}
+
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <p>© Elute Insights</p>
+
+</footer>
+
+
+</body>
+
+</html>
