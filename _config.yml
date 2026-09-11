@@ -1,6 +1,9 @@
 title: Elute Insights
-description: Data Analytics, Machine Learning & AI Consulting
+
+description: Data Analytics, Machine Learning & AI Consulting for Smarter Business Decisions
+
 url: "https://eluteinsights.com"
+
 baseurl: ""
 
 permalink: /blog/:title/
