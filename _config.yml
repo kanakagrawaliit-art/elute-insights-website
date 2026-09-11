@@ -1,0 +1,8 @@
+title: Elute Insights
+description: Data Analytics, Machine Learning & AI Consulting
+url: "https://eluteinsights.com"
+baseurl: ""
+
+permalink: /blog/:title/
+
+markdown: kramdown
