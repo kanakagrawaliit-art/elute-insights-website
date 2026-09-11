@@ -1,6 +1,4 @@
 ---
-
----
 layout: post
 title: "How Churn Prediction Can Improve Business Profitability"
 description: "Learn how churn prediction, SHAP analysis, customer segmentation, and customer economics can help businesses improve retention and profitability."
