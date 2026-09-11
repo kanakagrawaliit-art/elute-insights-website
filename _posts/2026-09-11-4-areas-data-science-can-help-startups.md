@@ -7,7 +7,7 @@ category: Data Science
 author: Kanak Agrawal
 
 # Optional featured image:
-# image: /images/data-science-startups.jpg
+# image: /images/4_ways_data_science_can_help_startups.png
 # image_alt: "Using data science to improve startup decision-making"
 ---
 
