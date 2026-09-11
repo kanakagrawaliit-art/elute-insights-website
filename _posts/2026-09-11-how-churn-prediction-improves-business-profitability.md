@@ -1,23 +1,13 @@
 ---
 
+---
 layout: post
 title: "How Churn Prediction Can Improve Business Profitability"
 description: "Learn how churn prediction, SHAP analysis, customer segmentation, and customer economics can help businesses improve retention and profitability."
 date: 2026-09-11
 author: Elute Insights
-categories:
-
-* Data Analytics
-* Machine Learning
-  tags:
-* Churn Prediction
-* Customer Retention
-* Machine Learning
-* Predictive Analytics
-* Customer Analytics
-* Data Science
-  permalink: /blog/how-churn-prediction-improves-business-profitability/
-
+category: Machine Learning
+permalink: /blog/how-churn-prediction-improves-business-profitability/
 ---
 
 # How Churn Prediction Can Improve Business Profitability
