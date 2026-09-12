@@ -539,6 +539,33 @@
   font-weight: 500;
   color: #5f6b7a;
 }
+  .about-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about-photo {
+  width: 360px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.hero-profile-name {
+  margin-top: 18px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0b2d52;
+}
+
+.hero-profile-title {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #5f6b7a;
+}
   
 </style>
 </head>
@@ -816,13 +843,19 @@
   <!-- ================= ABOUT ================= -->
   <section id="about" aria-label="About us">
     <div class="wrap about-grid">
-      <div>
-        <img class="about-photo" src="https://raw.githubusercontent.com/kanakagrawaliit-art/elute-insights-website/main/kanak%20profile%20picture%20(1).jpg" alt="Kanak Agrawal's professional headshot">
-     
-      </div>
-      <div class="hero-profile-name">Kanak Agrawal</div>
-      <div class="hero-profile-title">Financial Data Science & Analytics Consultant</div>
-     
+ <div class="about-profile">
+  <img
+    class="about-photo"
+    src="https://raw.githubusercontent.com/kanakagrawaliit-art/elute-insights-website/main/kanak%20profile%20picture%20(1).jpg"
+    alt="Kanak Agrawal's professional headshot"
+  >
+
+  <div class="hero-profile-name">Kanak Agrawal</div>
+
+  <div class="hero-profile-title">
+    Financial Data Science & Analytics Consultant
+  </div>
+</div>
       <div>
         <div class="about-block">
           <h3>Education</h3>
